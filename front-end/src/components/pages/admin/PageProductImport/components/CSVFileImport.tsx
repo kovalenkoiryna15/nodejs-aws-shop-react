@@ -57,7 +57,7 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       ) : (
         <div>
           <button onClick={removeFile}>Remove file</button>
-          <button onClick={uploadFile}>Upload file</button>
+          <button disabled onClick={uploadFile}>Upload file</button>
         </div>
       )}
     </Box>

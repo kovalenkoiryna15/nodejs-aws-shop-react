@@ -44,7 +44,6 @@ export default function ProductsTable() {
               <TableCell align="right">{product.count}</TableCell>
               <TableCell align="right">
                 <Button
-                  disabled
                   size="small"
                   color="primary"
                   component={Link}
@@ -53,7 +52,6 @@ export default function ProductsTable() {
                   Manage
                 </Button>
                 <Button
-                  disabled
                   size="small"
                   color="secondary"
                   onClick={() => {

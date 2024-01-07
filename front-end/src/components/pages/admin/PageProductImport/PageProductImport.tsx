@@ -20,7 +20,6 @@ export default function PageProductImport() {
           sx={{ alignSelf: "end" }}
           component={Link}
           to={"/admin/product-form"}
-          disabled
         >
           Create product
         </Button>

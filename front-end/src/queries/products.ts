@@ -47,18 +47,26 @@ export function useRemoveProductCache() {
 }
 
 export function useUpsertAvailableProduct() {
-  return useMutation((values: AvailableProduct) =>
-    axios.put<AvailableProduct>(`${API_PATHS.bff}/product`, values, {
+  return useMutation((values: Omit<AvailableProduct, 'id'> | AvailableProduct) => {
+    if ('id' in values && values.id) {
+      return axios.put<AvailableProduct>(`${API_PATHS.bff}/products/${values.id}`, values, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
+        },
+      });
+    }
+
+    return axios.post<AvailableProduct>(`${API_PATHS.bff}/products`, values, {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },
-    })
-  );
+    });
+  });
 }
 
 export function useDeleteAvailableProduct() {
   return useMutation((id: string) =>
-    axios.delete(`${API_PATHS.bff}/product/${id}`, {
+    axios.delete(`${API_PATHS.bff}/products/${id}`, {
       headers: {
         Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
       },
